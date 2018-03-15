@@ -95,11 +95,11 @@ $(function() {
 		/* TODO: Write a new test suite named "Initial Entries" */
 		describe('Initial Entries', function() {
 			/* TODO: Write a test that ensures when the loadFeed
-				 * function is called and completes its work, there is at least
-				 * a single .entry element within the .feed container.
-				 * Remember, loadFeed() is asynchronous so this test will require
-				 * the use of Jasmine's beforeEach and asynchronous done() function.
-				 */
+			 * function is called and completes its work, there is at least
+			 * a single .entry element within the .feed container.
+			 * Remember, loadFeed() is asynchronous so this test will require
+			 * the use of Jasmine's beforeEach and asynchronous done() function.
+			 */
 			beforeEach(async function(done) {
 				jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 				var feeds = await init();
@@ -113,9 +113,26 @@ $(function() {
 		});
 
 		/* TODO: Write a new test suite named "New Feed Selection" */
+		describe('New Feed Selection', function() {
+			/* TODO: Write a test that ensures when a new feed is loaded
+			 * by the loadFeed function that the content actually changes.
+			 * Remember, loadFeed() is asynchronous.
+			 */
 
-				/* TODO: Write a test that ensures when a new feed is loaded
-				 * by the loadFeed function that the content actually changes.
-				 * Remember, loadFeed() is asynchronous.
-				 */
+			 var feed = document.querySelector('.entry > h2').textContent;
+			 console.log(feed);
+
+			 beforeEach(async function(done) {
+				jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
+				var feeds = await init();
+				done();
+			});
+
+			var newFeed = document.querySelector('.entry > h2').textContent;
+			console.log(newFeed);
+
+			it('feed content changes after the loadFeed function is executed', function() {
+				expect(newFeed).not.toEqual(feed);
+			})
+		});
 }());
