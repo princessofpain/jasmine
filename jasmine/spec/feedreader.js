@@ -62,9 +62,6 @@ $(function() {
 				 * the CSS to determine how we're performing the
 				 * hiding/showing of the menu element.
 				 */
-				 var click;
-
-				 beforeEach()
 
 				 it('is hidden by default', function() {
 				 		var menuClass = document.querySelector('body').className;
@@ -96,13 +93,24 @@ $(function() {
 
 
 		/* TODO: Write a new test suite named "Initial Entries" */
-
-				/* TODO: Write a test that ensures when the loadFeed
+		describe('Initial Entries', function() {
+			/* TODO: Write a test that ensures when the loadFeed
 				 * function is called and completes its work, there is at least
 				 * a single .entry element within the .feed container.
 				 * Remember, loadFeed() is asynchronous so this test will require
 				 * the use of Jasmine's beforeEach and asynchronous done() function.
 				 */
+			beforeEach(async function(done) {
+				jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
+				var feeds = await init();
+				done();
+			});
+
+			it('at least one .entry element in the .feed container', function() {
+				var container = $('.feed');
+				expect(container.length).toBeGreaterThan(0);
+			});
+		});
 
 		/* TODO: Write a new test suite named "New Feed Selection" */
 
