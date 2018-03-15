@@ -81,23 +81,16 @@ $(function() {
 					/*this is a try, but not finished - underneath there is the rest
 					of one other try
 					*/
-					it('changes visible when clicked', function() {
+					it('check visibility when clicked', function() {
+						var menu = document.querySelector('.menu-icon-link');
 
+						menu.click();
+						var newMenuClass = document.querySelector('body').className;
+						expect(newMenuClass).not.toEqual('menu-hidden')
+
+						menu.click();
 						var menuClass = document.querySelector('body').className;
-						var menu = document.querySelector('body');
-
 						expect(menuClass).toEqual('menu-hidden');
-
-						var spy = spyOn(menu, toggleClass());
-
-						// var spyEvent = spyOnProperty(menu, 'class', 'get').and.callThrough();
-
-						// if(spyEvent.toHaveBeenCalled === true) {
-						// 	expect(menuClass).not.toEqual('menu-hidden');
-						// } else {
-						// 	expect(menuClass).toEqual('menu-hidden');
-						// }
-
 					});
 		});
 
