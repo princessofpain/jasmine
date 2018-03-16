@@ -11,11 +11,11 @@
 $(function() {
 		/* This is our first test suite - a test suite just contains
 		* a related set of tests. This suite is all about the RSS
-		* feeds definitions, the allFeeds variable in our application.
+		* feeds definitions, the allFeeds constiable in our application.
 		*/
 		describe('RSS Feeds', function() {
 				/* This is our first test - it tests to make sure that the
-				 * allFeeds variable has been defined and that it is not
+				 * allFeeds constiable has been defined and that it is not
 				 * empty. Experiment with this before you get started on
 				 * the rest of this project. What happens when you change
 				 * allFeeds in app.js to be an empty array and refresh the
@@ -31,11 +31,11 @@ $(function() {
 				 * and that the URL is not empty.
 				 */
 				it('have URL', function() {
-					for(var i = 0; i < allFeeds.length; i++) {
-						var object = allFeeds[i];
-						var objectLength = object.url.length;
+					for(let i = 0; i < allFeeds.length; i++) {
+						const object = allFeeds[i];
+						const objectLength = object.url.length;
 
-						expect(objectLength).toBeGreaterThan(1);
+						expect(objectLength).toBeGreaterThan(0);
 					};
 				});
 
@@ -44,12 +44,12 @@ $(function() {
 				 * and that the name is not empty.
 				 */
 				it('have name', function() {
-					for(var i = 0; i < allFeeds.length; i++) {
-						var object = allFeeds[i];
-						var objectLength = object.name.length;
+					for(let i = 0; i < allFeeds.length; i++) {
+						const object = allFeeds[i];
+						const objectLength = object.name.length;
 
 						expect(object.name).toBeDefined();
-						expect(objectLength).toBeGreaterThan(1);
+						expect(objectLength).toBeGreaterThan(0);
 					};
 				});
 
@@ -62,9 +62,8 @@ $(function() {
 				 * the CSS to determine how we're performing the
 				 * hiding/showing of the menu element.
 				 */
-
 				 it('is hidden by default', function() {
-				 		var menuClass = document.querySelector('body').className;
+				 		const menuClass = document.querySelector('body').className;
 
 						expect(menuClass).toEqual('menu-hidden');
 				 });
@@ -75,18 +74,18 @@ $(function() {
 					* clicked and does it hide when clicked again.
 					*/
 
-					/*this is a try, but not finished - underneath there is the rest
-					of one other try
+					/* check the class of th ebody after a click on the menu icon
+					 * and recheck after another click
 					*/
 					it('check visibility when clicked', function() {
-						var menu = document.querySelector('.menu-icon-link');
+						const menu = document.querySelector('.menu-icon-link');
 
 						menu.click();
-						var newMenuClass = document.querySelector('body').className;
+						const newMenuClass = document.querySelector('body').className;
 						expect(newMenuClass).not.toEqual('menu-hidden')
 
 						menu.click();
-						var menuClass = document.querySelector('body').className;
+						const menuClass = document.querySelector('body').className;
 						expect(menuClass).toEqual('menu-hidden');
 					});
 		});
@@ -100,14 +99,19 @@ $(function() {
 			 * Remember, loadFeed() is asynchronous so this test will require
 			 * the use of Jasmine's beforeEach and asynchronous done() function.
 			 */
+
+			/* beforeEach for asynchronous functions, wait for init() because it starts the
+			 * execution of loadFeed()
+			*/
 			beforeEach(async function(done) {
 				jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
-				var feeds = await init();
+				const feeds = await init();
 				done();
 			});
 
+			// check the length of container (number of childs)
 			it('at least one .entry element in the .feed container', function() {
-				var container = $('.feed');
+				const container = $('.feed');
 				expect(container.length).toBeGreaterThan(0);
 			});
 		});
@@ -119,19 +123,22 @@ $(function() {
 			 * Remember, loadFeed() is asynchronous.
 			 */
 
-			 var feed = $('.feed');
+			 /* the feed class is compared before and after running loadFeed() through
+			 *	asynchronous beforeEach it (loadFeed() is stored in init())
+			 */
+			 const feed = $('.feed');
 			 console.log(feed);
 
 			 beforeEach(async function(done) {
 				jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
-				var feeds = await init();
+				const feeds = await init();
 				done();
 			});
 
-			var newFeed = $('.feed');
-			console.log(newFeed);
-
 			it('feed content changes after the loadFeed function is executed', function() {
+				const newFeed = $('.feed');
+				console.log(newFeed);
+
 				expect(newFeed).not.toBe(feed);
 			})
 		});
