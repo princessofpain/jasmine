@@ -119,7 +119,7 @@ $(function() {
 			 * Remember, loadFeed() is asynchronous.
 			 */
 
-			 var feed = document.querySelector('.entry > h2').textContent;
+			 var feed = $('.feed');
 			 console.log(feed);
 
 			 beforeEach(async function(done) {
@@ -128,11 +128,11 @@ $(function() {
 				done();
 			});
 
-			var newFeed = document.querySelector('.entry > h2').textContent;
+			var newFeed = $('.feed');
 			console.log(newFeed);
 
 			it('feed content changes after the loadFeed function is executed', function() {
-				expect(newFeed).not.toEqual(feed);
+				expect(newFeed).not.toBe(feed);
 			})
 		});
 }());
