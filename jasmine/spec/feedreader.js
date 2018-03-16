@@ -36,7 +36,7 @@ $(function() {
 						const objectLength = object.url.length;
 
 						expect(objectLength).toBeGreaterThan(0);
-					};
+					}
 				});
 
 				/* TODO: Write a test that loops through each feed
@@ -50,7 +50,7 @@ $(function() {
 
 						expect(object.name).toBeDefined();
 						expect(objectLength).toBeGreaterThan(0);
-					};
+					}
 				});
 
 		});
@@ -82,7 +82,7 @@ $(function() {
 
 						menu.click();
 						const newMenuClass = document.querySelector('body').className;
-						expect(newMenuClass).not.toEqual('menu-hidden')
+						expect(newMenuClass).not.toEqual('menu-hidden');
 
 						menu.click();
 						const menuClass = document.querySelector('body').className;
@@ -103,7 +103,7 @@ $(function() {
 			/* beforeEach for asynchronous functions, wait for init() because it starts the
 			 * execution of loadFeed()
 			*/
-			beforeEach(async function(done) {
+			beforeEach(async (done) => {
 				jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 				const feeds = await init();
 				done();
@@ -129,7 +129,7 @@ $(function() {
 			 const feed = $('.feed');
 			 console.log(feed);
 
-			 beforeEach(async function(done) {
+			 beforeEach(async (done) => {
 				jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 				const feeds = await init();
 				done();
@@ -140,6 +140,6 @@ $(function() {
 				console.log(newFeed);
 
 				expect(newFeed).not.toBe(feed);
-			})
+			});
 		});
 }());
