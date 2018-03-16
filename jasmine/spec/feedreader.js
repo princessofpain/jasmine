@@ -103,9 +103,9 @@ $(function() {
 			/* beforeEach for asynchronous functions, wait for init() because it starts the
 			 * execution of loadFeed()
 			*/
-			beforeEach(async (done) => {
+			beforeEach(function(done){
 				jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
-				const feeds = await init();
+				init();
 				done();
 			});
 
@@ -129,9 +129,9 @@ $(function() {
 			 const feed = $('.feed');
 			 console.log(feed);
 
-			 beforeEach(async (done) => {
+			 beforeEach(function(done){
 				jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
-				const feeds = await init();
+				init();
 				done();
 			});
 
