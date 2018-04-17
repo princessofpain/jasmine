@@ -50,6 +50,7 @@ $(function() {
 
 	describe('Initial Entries', function() {
 		/* beforeEach for asynchronous function loadFeed(), second argument is a callback
+		load a feed to check if the entry is added to the DOM
 		*/
 		beforeEach(function(done){
 			loadFeed(0, done);
@@ -65,6 +66,7 @@ $(function() {
 	describe('New Feed Selection', function() {
 		let feed, otherFeed;
 		 /* beforeEach for asynchronous function loadFeed(), second argument is a callback
+		 check the last entry after loading the first feed, then load another feed and do the same (feeds are appended)
 		*/
 		beforeEach(function(done){
 			loadFeed(0, function() {
