@@ -39,12 +39,12 @@ $(function() {
 					const menu = document.querySelector('.menu-icon-link');
 
 					menu.click();
-					const newMenuClass = $('body').hasClass('menu-hidden');
-					expect(newMenuClass).toBe(false);
+					const menuClassName = $('body').hasClass('menu-hidden');
+					expect(menuClassName).toBe(false);
 
 					menu.click();
-					const menuClass = $('body').hasClass('menu-hidden');
-					expect(menuClass).toBe(true);
+					const newMenuClassName = $('body').hasClass('menu-hidden');
+					expect(newMenuClassName).toBe(true);
 				});
 	});
 
@@ -52,13 +52,12 @@ $(function() {
 		/* beforeEach for asynchronous function loadFeed(), second argument is a callback
 		*/
 		beforeEach(function(done){
-			jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 			loadFeed(0, done);
 		});
 
 		// check the length of container (number of childs)
 		it('at least one .entry element in the .feed container', function() {
-			const feedContainer = $('.feed').children().length;
+			const feedContainer = $('.entry').length;
 			expect(feedContainer).toBeGreaterThan(0);
 		});
 	});
@@ -68,15 +67,14 @@ $(function() {
 		 /* beforeEach for asynchronous function loadFeed(), second argument is a callback
 		*/
 		beforeEach(function(done){
-			jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
-
 			loadFeed(0, function() {
-				feed = $('.feed h2').last().text();
+				feed = $('.entry').last().contents();
+				done();
+			});
 
-				loadFeed(1, function() {
-					otherFeed = $('.feed h2').last().text();
-				});
-				done()
+			loadFeed(1, function() {
+				otherFeed = $('.entry').last().contents();
+				done();
 			});
 		});
 
