@@ -8,8 +8,10 @@ $(function() {
 		it('have URL', function() {
 			for(let i = 0; i < allFeeds.length; i++) {
 				const object = allFeeds[i];
+				const objectUrl = object.url;
 				const objectLength = object.url.length;
 
+				expect(objectUrl).toBeDefined();
 				expect(objectLength).toBeGreaterThan(0);
 			}
 		});
@@ -58,7 +60,7 @@ $(function() {
 
 		// check the length of container (number of childs)
 		it('at least one .entry element in the .feed container', function() {
-			const feedContainer = $('.entry').length;
+			const feedContainer = $('.feed .entry').length;
 			expect(feedContainer).toBeGreaterThan(0);
 		});
 	});
@@ -70,13 +72,11 @@ $(function() {
 		*/
 		beforeEach(function(done){
 			loadFeed(0, function() {
-				feed = $('.entry').last().contents();
-				done();
-			});
-
-			loadFeed(1, function() {
-				otherFeed = $('.entry').last().contents();
-				done();
+				feed = $('.entry').html();
+				loadFeed(1, function() {
+					otherFeed = $('.entry').html();
+					done();
+				});
 			});
 		});
 
